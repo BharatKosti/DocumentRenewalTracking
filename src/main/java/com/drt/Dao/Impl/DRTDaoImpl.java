@@ -5,90 +5,113 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.drt.Dao.DRTDao;
+import com.drt.entity.AdminEntity;
 import com.drt.entity.CompanyEntity;
 import com.drt.entity.RecordEntity;
-import com.drt.model.Admin;
-import com.drt.model.Record;
 
 @Repository
 public class DRTDaoImpl implements DRTDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	public String createRecord(Record record) {
-		System.out.println("In DAO Layer in createRecord");
+
+	public String createRecord(RecordEntity recordEntity) {
+		
 		Session session = sessionFactory.openSession();
-		RecordEntity recordEntity = new RecordEntity();
-		recordEntity.setDocumentsHolderName(record.getDocumentsHolderName());
-		recordEntity.setDocumentsName(record.getDocumentsName());
+		session.beginTransaction();
 		session.save(recordEntity);
+		session.getTransaction().commit();
 		session.close();
 		return "Created";
 	}
 
-	public Record getRecordByEmployeeNumber(String employeeNumber) {
-		System.out.println("In DAO Layer in getRecordByEmployeeNumber");
+	public RecordEntity getRecordByEmployeeNumber(String employeeNumber) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
 		return null;
 	}
 
-	public Record getRecordByDocumentNumber(String documentNumber) {
-		System.out.println("In DAO Layer in getRecordByDocumentNumber");
+	public RecordEntity getRecordByDocumentNumber(String documentNumber) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<Record> getAllRecords() {
-		System.out.println("In DAO Layer in getAllRecords");
+	public List<RecordEntity> getAllRecords() {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		//session.get(RecordEntity.class)
 		return null;
 	}
 
-	public String updateRecord(Record record) {
-		System.out.println("In DAO Layer in updateRecord");
+	public String updateRecord(RecordEntity recordEntity) {
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		RecordEntity recordEntity1=(RecordEntity) session.get(RecordEntity.class, recordEntity.getEmployeeNumber());
+		BeanUtils.copyProperties(recordEntity, recordEntity1);
+		session.update(recordEntity1);
+		session.getTransaction().commit();
+		session.close();
 		return null;
 	}
 
 	public String deleteRecord(String employeeNumber) {
-		System.out.println("In DAO Layer in deleteRecord");
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		RecordEntity recordEntity = (RecordEntity) session.get(RecordEntity.class, employeeNumber);
+		session.delete(recordEntity);
+		session.getTransaction().commit();
+		session.close();
+		return "deleted";
+	}
+
+	public String createAdmin(AdminEntity adminEntity) {
+		
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.save(adminEntity);
+		session.getTransaction().commit();
+		session.close();
+		return "Created";
+	}
+
+	public AdminEntity getAdminByEmployeeNumber(String employeeNumber) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public String createAdmin(Admin admin) {
-		System.out.println("In DAO Layer in createAdmin");
+	public List<AdminEntity> getAllAdmins() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Record getAdminByEmployeeNumber(String employeeNumber) {
-		System.out.println("In DAO Layer in getAdminByEmployeeNumber");
-		return null;
-	}
-
-	public List<Record> getAllAdmins() {
-		System.out.println("In DAO Layer in getAllAdmins");
-		return null;
-	}
-
-	public String updateAdmin(Admin admin) {
-		System.out.println("In DAO Layer in updateAdmin");
+	public String updateAdmin(AdminEntity adminEntity) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public String deleteAdmin(String employeeNumber) {
-		System.out.println("In DAO Layer in deleteAdmin");
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<Record> getAllRecords(Date date) {
-		System.out.println(date);
+	public List<RecordEntity> getAllRecords(Date date) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public String createCompany(CompanyEntity companyEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.save(companyEntity);
+		session.getTransaction().commit();
+		session.close();
+		return "Created";
 	}
 
 	public CompanyEntity getCompanyById(int companyId) {
@@ -110,5 +133,5 @@ public class DRTDaoImpl implements DRTDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 }
