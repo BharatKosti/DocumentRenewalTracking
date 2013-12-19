@@ -3,6 +3,7 @@ package com.drt.Dao.Impl;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.BeanUtils;
@@ -44,9 +45,9 @@ public class DRTDaoImpl implements DRTDao {
 
 	public List<RecordEntity> getAllRecords() {
 		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		//session.get(RecordEntity.class)
-		return null;
+		Query query = session.createQuery("from RecordEntity");
+		List<RecordEntity> recordEntities = query.list();
+		return recordEntities;
 	}
 
 	public String updateRecord(RecordEntity recordEntity) {
