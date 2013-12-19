@@ -5,6 +5,7 @@ public class Company {
 	private String name;
 	private String email;
 	private String emailPassword;
+	private String companyNumber;
 	
 	public String getName() {
 		return name;
@@ -24,7 +25,10 @@ public class Company {
 	public void setEmailPassword(String emailPassword) {
 		this.emailPassword = emailPassword;
 	}
-	
-	
-
+	public String getCompanyNumber() {
+		return companyNumber;
+	}
+	public void setCompanyNumber(String companyNumber) {
+		this.companyNumber = companyNumber;
+	}
 }

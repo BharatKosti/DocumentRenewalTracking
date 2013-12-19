@@ -30,6 +30,7 @@ public interface DRTDao {
 	public List<RecordEntity> getAllRecords(Date date);
 	public String createCompany(CompanyEntity companyEntity);
 	public CompanyEntity getCompanyById(int companyId);
+	public CompanyEntity getCompanyByNumber(String companyNumber);
 	public List<CompanyEntity> getAllCompany();
 	public String updateCompany(CompanyEntity companyEntity);
 	public String deleteCompanyById(int id);

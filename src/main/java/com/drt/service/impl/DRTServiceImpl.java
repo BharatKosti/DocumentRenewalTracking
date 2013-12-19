@@ -24,11 +24,16 @@ public class DRTServiceImpl implements DRTService {
 	
 	@Autowired
 	private DRTDao drtDao;
-
+	private static String[] ignoreProperties = {"issueDate","expiryDate","phoneNumber","email"}; 
 	public String createRecord(Record record) {
 		System.out.println("In Service Layer in createRecord");
 		RecordEntity recordEntity = new RecordEntity();
-		BeanUtils.copyProperties(record, recordEntity);
+		BeanUtils.copyProperties(record, recordEntity,ignoreProperties);
+		CompanyEntity companyEntity = drtDao.getCompanyByNumber(record.getCompanyNumber());
+		System.out.println(companyEntity);
+		recordEntity.setPhoneNumber(record.getPhoneNumber().get(0));
+		recordEntity.setEmail(record.getEmail().get(0));
+		recordEntity.setCompany(companyEntity);
 		String result = drtDao.createRecord(recordEntity);
 		return result;
 	}
@@ -56,7 +61,7 @@ public class DRTServiceImpl implements DRTService {
 		for(RecordEntity recordEntity:recordEntities)
 		{
 			Record record = new Record();
-			BeanUtils.copyProperties(recordEntity, record);
+			BeanUtils.copyProperties(recordEntity, record,ignoreProperties);
 			records.add(record);
 			
 		}

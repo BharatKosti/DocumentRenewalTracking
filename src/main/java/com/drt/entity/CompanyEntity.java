@@ -19,6 +19,7 @@ public class CompanyEntity {
 	private String name;
 	private String email;
 	private String emailPassword;
+	private String companyNumber;
 	@OneToMany(mappedBy="company")
 	private List<RecordEntity> recordList;
 	@OneToMany(mappedBy="company")
@@ -58,6 +59,12 @@ public class CompanyEntity {
 	}
 	public void setAdminList(List<AdminEntity> adminList) {
 		this.adminList = adminList;
+	}
+	public String getCompanyNumber() {
+		return companyNumber;
+	}
+	public void setCompanyNumber(String companyNumber) {
+		this.companyNumber = companyNumber;
 	}
 	
 	
