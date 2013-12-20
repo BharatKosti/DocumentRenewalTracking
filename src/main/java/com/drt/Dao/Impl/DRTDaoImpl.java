@@ -36,8 +36,8 @@ public class DRTDaoImpl implements DRTDao {
 		Session session = sessionFactory.openSession();
 		String sql = "SELECT * FROM Record WHERE employeeNumber = :employeeNumber";
 		SQLQuery query = session.createSQLQuery(sql);
-		query.addEntity(CompanyEntity.class);
-		query.setParameter("emploeeNumber", employeeNumber);
+		query.addEntity(RecordEntity.class);
+		query.setParameter("employeeNumber", employeeNumber);
 		List results = query.list();
 		return (RecordEntity) results.get(0);
 	}
@@ -46,7 +46,7 @@ public class DRTDaoImpl implements DRTDao {
 		Session session = sessionFactory.openSession();
 		String sql = "SELECT * FROM Record WHERE documentNumber = :documentNumber";
 		SQLQuery query = session.createSQLQuery(sql);
-		query.addEntity(CompanyEntity.class);
+		query.addEntity(RecordEntity.class);
 		query.setParameter("documentNumber", documentNumber);
 		List results = query.list();
 		return (RecordEntity) results.get(0);

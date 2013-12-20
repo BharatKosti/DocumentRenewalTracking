@@ -33,6 +33,11 @@ public class DRTServiceImpl implements DRTService {
 		System.out.println(companyEntity);
 		recordEntity.setPhoneNumber(record.getPhoneNumber().get(0));
 		recordEntity.setEmail(record.getEmail().get(0));
+		java.sql.Date expiryDate = new java.sql.Date(record.getExpiryDate().getTimeInMillis());
+		System.out.println(expiryDate);
+		recordEntity.setExpiryDate(expiryDate);
+		java.sql.Date issueDate = new java.sql.Date(record.getIssueDate().getTimeInMillis());
+		recordEntity.setIssueDate(issueDate);
 		recordEntity.setCompany(companyEntity);
 		String result = drtDao.createRecord(recordEntity);
 		return result;
@@ -42,7 +47,7 @@ public class DRTServiceImpl implements DRTService {
 		System.out.println("In Service Layer in getRecordByEmployeeNumber");
 		RecordEntity recordEntity=drtDao.getRecordByEmployeeNumber(employeeNumber);
 		Record record = new Record();
-		BeanUtils.copyProperties(recordEntity, record);
+		BeanUtils.copyProperties(recordEntity, record,ignoreProperties);
 		return record;
 	}
 
@@ -50,7 +55,7 @@ public class DRTServiceImpl implements DRTService {
 		System.out.println("In Service Layer in getRecordByDocumentNumber");
 		RecordEntity recordEntity = drtDao.getRecordByDocumentNumber(documentNumber);
 		Record record = new Record();
-		BeanUtils.copyProperties(recordEntity, record);
+		BeanUtils.copyProperties(recordEntity, record,ignoreProperties);
 		return record;
 	}
 
