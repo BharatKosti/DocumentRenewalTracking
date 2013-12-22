@@ -9,6 +9,7 @@ import java.util.List;
 import com.drt.entity.AdminEntity;
 import com.drt.entity.CompanyEntity;
 import com.drt.entity.RecordEntity;
+import com.drt.exception.DRTException;
 
 /**
  * @author bharatkosti
@@ -16,23 +17,23 @@ import com.drt.entity.RecordEntity;
  */
 public interface DRTDao {
 	
-	public String createRecord(RecordEntity record);
-	public RecordEntity getRecordByEmployeeNumber(String employeeNumber);
-	public RecordEntity getRecordByDocumentNumber(String documentNumber);
-	public List<RecordEntity> getAllRecords();
-	public String updateRecord(RecordEntity recordEntity);
-	public String deleteRecord(String employeeNumber);
-	public String createAdmin(AdminEntity adminEntity);
-	public AdminEntity getAdminByEmployeeNumber(String employeeNumber);
-	public List<AdminEntity> getAllAdmins();
-	public String updateAdmin(AdminEntity adminEntity);
-	public String deleteAdmin(String employeeNumber);
-	public List<RecordEntity> getAllRecords(Date date);
-	public String createCompany(CompanyEntity companyEntity);
-	public CompanyEntity getCompanyById(int companyId);
-	public CompanyEntity getCompanyByNumber(String companyNumber);
-	public List<CompanyEntity> getAllCompany();
-	public String updateCompany(CompanyEntity companyEntity);
-	public String deleteCompanyById(int id);
+	public String createRecord(RecordEntity record) throws DRTException;
+	public RecordEntity getRecordByEmployeeNumber(String employeeNumber) throws DRTException;
+	public RecordEntity getRecordByDocumentNumber(String documentNumber) throws DRTException;
+	public List<RecordEntity> getAllRecords() throws DRTException;
+	public String updateRecord(RecordEntity recordEntity) throws DRTException;
+	public String deleteRecord(String employeeNumber) throws DRTException;
+	public String createAdmin(AdminEntity adminEntity) throws DRTException;
+	public AdminEntity getAdminByEmployeeNumber(String employeeNumber) throws DRTException;
+	public List<AdminEntity> getAllAdmins() throws DRTException;
+	public String updateAdmin(AdminEntity adminEntity) throws DRTException;
+	public String deleteAdmin(String employeeNumber) throws DRTException;
+	public List<RecordEntity> getAllRecords(Date date) throws DRTException;
+	public String createCompany(CompanyEntity companyEntity) throws DRTException;
+	public CompanyEntity getCompanyById(int companyId) throws DRTException;
+	public CompanyEntity getCompanyByNumber(String companyNumber) throws DRTException;
+	public List<CompanyEntity> getAllCompany() throws DRTException;
+	public String updateCompany(CompanyEntity companyEntity) throws DRTException;
+	public String deleteCompanyById(int id) throws DRTException;
 
 }

@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.drt.entity.CompanyEntity;
+import com.drt.exception.DRTException;
 import com.drt.model.Admin;
 import com.drt.model.Company;
 import com.drt.model.Record;
@@ -71,10 +72,30 @@ public class DRTMain {
 		phoneNumbers1.add(phoneNumber3);
 		record1.setPhoneNumber(phoneNumbers);
 		record1.setCompanyNumber("CMP1");
-		drtService.createRecord(record1);
-		System.out.println(drtService.getAllRecords().get(2).getEmployeeNumber());
-		System.out.println(drtService.getRecordByEmployeeNumber("u298662").getDocumentNumber());
-		System.out.println(drtService.getRecordByDocumentNumber("ALP123456789").getEmployeeNumber());
+		try {
+			drtService.createRecord(record1);
+		} catch (DRTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			System.out.println(drtService.getAllRecords().get(2).getEmployeeNumber());
+		} catch (DRTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			System.out.println(drtService.getRecordByEmployeeNumber("u298662").getDocumentNumber());
+		} catch (DRTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			System.out.println(drtService.getRecordByDocumentNumber("ALP123456789").getEmployeeNumber());
+		} catch (DRTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Admin admin = new Admin();
 		/*drtService.createAdmin(admin);
 		String employeeNumber = new String();

@@ -15,6 +15,7 @@ import com.drt.Dao.DRTDao;
 import com.drt.entity.AdminEntity;
 import com.drt.entity.CompanyEntity;
 import com.drt.entity.RecordEntity;
+import com.drt.exception.DRTException;
 
 @Repository
 public class DRTDaoImpl implements DRTDao {
@@ -22,7 +23,7 @@ public class DRTDaoImpl implements DRTDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public String createRecord(RecordEntity recordEntity) {
+	public String createRecord(RecordEntity recordEntity) throws DRTException {
 		
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
@@ -32,7 +33,7 @@ public class DRTDaoImpl implements DRTDao {
 		return "Created";
 	}
 
-	public RecordEntity getRecordByEmployeeNumber(String employeeNumber) {
+	public RecordEntity getRecordByEmployeeNumber(String employeeNumber) throws DRTException {
 		Session session = sessionFactory.openSession();
 		String sql = "SELECT * FROM Record WHERE employeeNumber = :employeeNumber";
 		SQLQuery query = session.createSQLQuery(sql);
@@ -42,7 +43,7 @@ public class DRTDaoImpl implements DRTDao {
 		return (RecordEntity) results.get(0);
 	}
 
-	public RecordEntity getRecordByDocumentNumber(String documentNumber) {
+	public RecordEntity getRecordByDocumentNumber(String documentNumber) throws DRTException{
 		Session session = sessionFactory.openSession();
 		String sql = "SELECT * FROM Record WHERE documentNumber = :documentNumber";
 		SQLQuery query = session.createSQLQuery(sql);
@@ -52,14 +53,14 @@ public class DRTDaoImpl implements DRTDao {
 		return (RecordEntity) results.get(0);
 	}
 
-	public List<RecordEntity> getAllRecords() {
+	public List<RecordEntity> getAllRecords() throws DRTException{
 		Session session = sessionFactory.openSession();
 		Query query = session.createQuery("from RecordEntity");
 		List<RecordEntity> recordEntities = query.list();
 		return recordEntities;
 	}
 
-	public String updateRecord(RecordEntity recordEntity) {
+	public String updateRecord(RecordEntity recordEntity) throws DRTException{
 		Session session=sessionFactory.openSession();
 		session.beginTransaction();
 		RecordEntity recordEntity1=(RecordEntity) session.get(RecordEntity.class, recordEntity.getEmployeeNumber());
@@ -70,7 +71,7 @@ public class DRTDaoImpl implements DRTDao {
 		return null;
 	}
 
-	public String deleteRecord(String employeeNumber) {
+	public String deleteRecord(String employeeNumber) throws DRTException{
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		RecordEntity recordEntity = (RecordEntity) session.get(RecordEntity.class, employeeNumber);
@@ -80,7 +81,7 @@ public class DRTDaoImpl implements DRTDao {
 		return "deleted";
 	}
 
-	public String createAdmin(AdminEntity adminEntity) {
+	public String createAdmin(AdminEntity adminEntity) throws DRTException{
 		
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
@@ -90,7 +91,7 @@ public class DRTDaoImpl implements DRTDao {
 		return "Created";
 	}
 
-	public AdminEntity getAdminByEmployeeNumber(String employeeNumber) {
+	public AdminEntity getAdminByEmployeeNumber(String employeeNumber) throws DRTException{
 		Session session = sessionFactory.openSession();
 		String sql = "SELECT * FROM Admin WHERE employeeNumber = :employeeNumber";
 		SQLQuery query = session.createSQLQuery(sql);
@@ -100,29 +101,29 @@ public class DRTDaoImpl implements DRTDao {
 		return (AdminEntity) results.get(0);
 	}
 
-	public List<AdminEntity> getAllAdmins() {
+	public List<AdminEntity> getAllAdmins() throws DRTException{
 		Session session = sessionFactory.openSession();
 		Query query = session.createQuery("from AdminEntity");
 		List<AdminEntity> adminEntities = query.list();
 		return adminEntities;
 	}
 
-	public String updateAdmin(AdminEntity adminEntity) {
+	public String updateAdmin(AdminEntity adminEntity) throws DRTException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public String deleteAdmin(String employeeNumber) {
+	public String deleteAdmin(String employeeNumber) throws DRTException{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<RecordEntity> getAllRecords(Date date) {
+	public List<RecordEntity> getAllRecords(Date date) throws DRTException{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public String createCompany(CompanyEntity companyEntity) {
+	public String createCompany(CompanyEntity companyEntity) throws DRTException{
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(companyEntity);
@@ -131,29 +132,29 @@ public class DRTDaoImpl implements DRTDao {
 		return "Created";
 	}
 
-	public CompanyEntity getCompanyById(int companyId) {
+	public CompanyEntity getCompanyById(int companyId) throws DRTException{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<CompanyEntity> getAllCompany() {
+	public List<CompanyEntity> getAllCompany() throws DRTException{
 		Session session = sessionFactory.openSession();
 		Query query = session.createQuery("from CompanyEntity");
 		List<CompanyEntity> companyEntities = query.list();
 		return companyEntities;
 	}
 
-	public String updateCompany(CompanyEntity companyEntity) {
+	public String updateCompany(CompanyEntity companyEntity) throws DRTException{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public String deleteCompanyById(int id) {
+	public String deleteCompanyById(int id) throws DRTException{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public CompanyEntity getCompanyByNumber(String companyNumber) {
+	public CompanyEntity getCompanyByNumber(String companyNumber) throws DRTException{
 		String sql = "SELECT * FROM Company WHERE companyNumber = :companyNumber";
 		Session session = sessionFactory.openSession();
 		SQLQuery query = session.createSQLQuery(sql);

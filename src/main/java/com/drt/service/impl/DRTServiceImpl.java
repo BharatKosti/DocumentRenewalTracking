@@ -13,6 +13,7 @@ import com.drt.Dao.DRTDao;
 import com.drt.entity.AdminEntity;
 import com.drt.entity.CompanyEntity;
 import com.drt.entity.RecordEntity;
+import com.drt.exception.DRTException;
 import com.drt.model.Admin;
 import com.drt.model.Company;
 import com.drt.model.Record;
@@ -25,7 +26,7 @@ public class DRTServiceImpl implements DRTService {
 	@Autowired
 	private DRTDao drtDao;
 	private static String[] ignoreProperties = {"issueDate","expiryDate","phoneNumber","email"}; 
-	public String createRecord(Record record) {
+	public String createRecord(Record record) throws DRTException {
 		System.out.println("In Service Layer in createRecord");
 		RecordEntity recordEntity = new RecordEntity();
 		BeanUtils.copyProperties(record, recordEntity,ignoreProperties);
@@ -43,7 +44,7 @@ public class DRTServiceImpl implements DRTService {
 		return result;
 	}
 
-	public Record getRecordByEmployeeNumber(String employeeNumber) {
+	public Record getRecordByEmployeeNumber(String employeeNumber) throws DRTException {
 		System.out.println("In Service Layer in getRecordByEmployeeNumber");
 		RecordEntity recordEntity=drtDao.getRecordByEmployeeNumber(employeeNumber);
 		Record record = new Record();
@@ -51,7 +52,7 @@ public class DRTServiceImpl implements DRTService {
 		return record;
 	}
 
-	public Record getRecordByDocumentNumber(String documentNumber) {
+	public Record getRecordByDocumentNumber(String documentNumber) throws DRTException {
 		System.out.println("In Service Layer in getRecordByDocumentNumber");
 		RecordEntity recordEntity = drtDao.getRecordByDocumentNumber(documentNumber);
 		Record record = new Record();
@@ -59,7 +60,7 @@ public class DRTServiceImpl implements DRTService {
 		return record;
 	}
 
-	public List<Record> getAllRecords() {
+	public List<Record> getAllRecords() throws DRTException {
 		System.out.println("In Service Layer in getAllRecords");
 		List<RecordEntity> recordEntities=drtDao.getAllRecords();
 		List<Record> records = new ArrayList<Record>();
@@ -73,7 +74,7 @@ public class DRTServiceImpl implements DRTService {
 		return records;
 	}
 
-	public String updateRecord(Record record) {
+	public String updateRecord(Record record) throws DRTException {
 		System.out.println("In Service Layer in updateRecord");
 		RecordEntity recordEntity = new RecordEntity();
 		BeanUtils.copyProperties(record, recordEntity);
@@ -81,13 +82,13 @@ public class DRTServiceImpl implements DRTService {
 		return result;
 	}
 
-	public String deleteRecord(String employeeNumber) {
+	public String deleteRecord(String employeeNumber) throws DRTException {
 		System.out.println("In Service Layer in deleteRecord");
 		String result = drtDao.deleteRecord(employeeNumber);
 		return result;
 	}
 
-	public String createAdmin(Admin admin) {
+	public String createAdmin(Admin admin) throws DRTException {
 		System.out.println("In Service Layer in createAdmin");
 		AdminEntity adminEntity = new AdminEntity();
 		BeanUtils.copyProperties(admin, adminEntity);
@@ -95,7 +96,7 @@ public class DRTServiceImpl implements DRTService {
 		return result;
 	}
 
-	public Admin getAdminByEmployeeNumber(String employeeNumber) {
+	public Admin getAdminByEmployeeNumber(String employeeNumber) throws DRTException {
 		System.out.println("In Service Layer in getAdminByEmployeeNumber");
 		AdminEntity adminEntity =  drtDao.getAdminByEmployeeNumber(employeeNumber);
 		Admin admin = new Admin();
@@ -103,7 +104,7 @@ public class DRTServiceImpl implements DRTService {
 		return admin;
 	}
 
-	public List<Admin> getAllAdmins() {
+	public List<Admin> getAllAdmins() throws DRTException {
 		System.out.println("In Service Layer in getAllAdmins");
 		List<AdminEntity> adminEntities =  drtDao.getAllAdmins();
 		List<Admin> admins = new ArrayList<Admin>();
@@ -117,7 +118,7 @@ public class DRTServiceImpl implements DRTService {
 		return admins;
 	}
 
-	public String updateAdmin(Admin admin) {
+	public String updateAdmin(Admin admin) throws DRTException {
 		System.out.println("In Service Layer in updateAdmin");
 		AdminEntity adminEntity = new AdminEntity();
 		BeanUtils.copyProperties(admin, adminEntity);
@@ -125,13 +126,13 @@ public class DRTServiceImpl implements DRTService {
 		return result;
 	}
 
-	public String deleteAdmin(String employeeNumber) {
+	public String deleteAdmin(String employeeNumber) throws DRTException {
 		System.out.println("In Service Layer in deleteAdmin");
 		String result =drtDao.deleteAdmin(employeeNumber);
 		return result;
 	}
 
-	public List<Record> getAllRecords(Date date) {
+	public List<Record> getAllRecords(Date date) throws DRTException {
 		List<RecordEntity> recordEntities=drtDao.getAllRecords(date);
 		List<Record> records = new ArrayList<Record>();
 		for(RecordEntity recordEntity:recordEntities)
@@ -144,21 +145,21 @@ public class DRTServiceImpl implements DRTService {
 		return records;
 	}
 
-	public String createCompany(Company company) {
+	public String createCompany(Company company) throws DRTException {
 		CompanyEntity companyEntity = new CompanyEntity();
 		BeanUtils.copyProperties(company, companyEntity);
 		String result = drtDao.createCompany(companyEntity);
 		return result;
 	}
 
-	public Company getCompanyById(int companyId) {
+	public Company getCompanyById(int companyId) throws DRTException {
 		CompanyEntity companyEntity =drtDao.getCompanyById(companyId);
 		Company company = new Company();
 		BeanUtils.copyProperties(companyEntity, company);
 		return company;
 	}
 
-	public List<Company> getAllCompany() {
+	public List<Company> getAllCompany() throws DRTException {
 		List<CompanyEntity> companyEntities = drtDao.getAllCompany();
 		List<Company> companies = new ArrayList<Company>();
 		for(CompanyEntity companyEntity:companyEntities)
@@ -171,14 +172,14 @@ public class DRTServiceImpl implements DRTService {
 		return companies;
 	}
 
-	public String updateCompany(Company company) {
+	public String updateCompany(Company company) throws DRTException {
 		CompanyEntity companyEntity = new CompanyEntity();
 		BeanUtils.copyProperties(company, companyEntity);
 		String result = drtDao.updateCompany(companyEntity);
 		return result;
 	}
 
-	public String deleteCompanyById(int id) {
+	public String deleteCompanyById(int id) throws DRTException {
 		String result = drtDao.deleteCompanyById(id);
 		return result;
 	}
