@@ -1,8 +1,7 @@
 package com.drt.entity;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -10,12 +9,17 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Admin")
-public class AdminEntity {
+public class AdminEntity implements Serializable {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int adminId;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3955749027534502794L;
+	//@Id
+	//@GeneratedValue(strategy=GenerationType.AUTO)
+	//private int adminId;
 	private String adminEntity;
+	@Id
 	private String employeeNumber;
 	private String adminName;
 	private String designamtion;
@@ -24,12 +28,7 @@ public class AdminEntity {
 	@ManyToOne
 	@JoinColumn(name="companyId")
 	private CompanyEntity company;
-	public int getAdminId() {
-		return adminId;
-	}
-	public void setAdminId(int adminId) {
-		this.adminId = adminId;
-	}
+	private String permissions;
 	public String getAdminEntity() {
 		return adminEntity;
 	}
@@ -72,6 +71,22 @@ public class AdminEntity {
 	public void setCompany(CompanyEntity company) {
 		this.company = company;
 	}
+	
+	public String getPermissions() {
+		return permissions;
+	}
+	public void setPermissions(String permissions) {
+		this.permissions = permissions;
+	}
+	@Override
+	public String toString() {
+		return "AdminEntity [adminEntity=" + adminEntity + ", employeeNumber="
+				+ employeeNumber + ", adminName=" + adminName
+				+ ", designamtion=" + designamtion + ", email=" + email
+				+ ", adminPhoneNumber=" + adminPhoneNumber + ", company="
+				+ company + ", permissions=" + permissions + "]";
+	}
+	
 	
 	
 

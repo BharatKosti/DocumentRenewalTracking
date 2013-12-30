@@ -1,5 +1,6 @@
 package com.drt.Dao.Impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -68,7 +69,7 @@ public class DRTDaoImpl implements DRTDao {
 		session.update(recordEntity1);
 		session.getTransaction().commit();
 		session.close();
-		return null;
+		return "Updated";
 	}
 
 	public String deleteRecord(String employeeNumber) throws DRTException{
@@ -114,12 +115,21 @@ public class DRTDaoImpl implements DRTDao {
 	}
 
 	public String deleteAdmin(String employeeNumber) throws DRTException{
-		// TODO Auto-generated method stub
-		return null;
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		AdminEntity adminEntity = (AdminEntity) session.get(AdminEntity.class, employeeNumber);
+		session.delete(adminEntity);
+		session.getTransaction().commit();
+		session.close();
+		return "deleted";
 	}
 
 	public List<RecordEntity> getAllRecords(Date date) throws DRTException{
-		// TODO Auto-generated method stub
+		List<RecordEntity> recordEntities = new ArrayList<RecordEntity>();
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.getTransaction().commit();
+		session.close();
 		return null;
 	}
 
@@ -150,7 +160,6 @@ public class DRTDaoImpl implements DRTDao {
 	}
 
 	public String deleteCompanyById(int id) throws DRTException{
-		// TODO Auto-generated method stub
 		return null;
 	}
 

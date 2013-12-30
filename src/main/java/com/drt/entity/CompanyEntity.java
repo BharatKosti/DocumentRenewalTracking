@@ -1,35 +1,35 @@
 package com.drt.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Company")
-public class CompanyEntity {
+public class CompanyEntity implements Serializable {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int companyId;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5869006593381382990L;
+	//@Id
+	//@GeneratedValue(strategy=GenerationType.AUTO)
+	//private int companyId;
 	private String name;
 	private String email;
 	private String emailPassword;
+	@Id
 	private String companyNumber;
 	@OneToMany(mappedBy="company")
 	private List<RecordEntity> recordList;
 	@OneToMany(mappedBy="company")
 	private List<AdminEntity> adminList;
-	public int getCompanyId() {
-		return companyId;
-	}
-	public void setCompanyId(int companyId) {
-		this.companyId = companyId;
-	}
+	@OneToMany(mappedBy="company")
+	private List<UserEntity> userList;
 	public String getName() {
 		return name;
 	}
@@ -66,6 +66,21 @@ public class CompanyEntity {
 	public void setCompanyNumber(String companyNumber) {
 		this.companyNumber = companyNumber;
 	}
+	public List<UserEntity> getUserList() {
+		return userList;
+	}
+	public void setUserList(List<UserEntity> userList) {
+		this.userList = userList;
+	}
+	@Override
+	public String toString() {
+		return "CompanyEntity [name=" + name + ", email=" + email
+				+ ", emailPassword=" + emailPassword + ", companyNumber="
+				+ companyNumber + ", recordList=" + recordList + ", adminList="
+				+ adminList + ", userList=" + userList + "]";
+	}
+	
+	
 	
 	
 	

@@ -1,9 +1,9 @@
 package com.drt.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -11,14 +11,20 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Record")
-public class RecordEntity {
+public class RecordEntity implements Serializable {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int recordId;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1696242652877102839L;
+	//@Id
+	//@GeneratedValue(strategy=GenerationType.AUTO)
+	//private int recordId;
 	private String documentsName;
 	private String documentsHolderName;
+	@Id
 	private String documentNumber;
+	@Id
 	private String employeeNumber;
 	private Date issueDate;
 	private Date expiryDate;
@@ -29,12 +35,6 @@ public class RecordEntity {
 	private CompanyEntity company;
 	
 	
-	public int getRecordId() {
-		return recordId;
-	}
-	public void setRecordId(int recordId) {
-		this.recordId = recordId;
-	}
 	public String getDocumentsName() {
 		return documentsName;
 	}
@@ -89,6 +89,16 @@ public class RecordEntity {
 	public void setCompany(CompanyEntity company) {
 		this.company = company;
 	}
+	@Override
+	public String toString() {
+		return "RecordEntity [documentsName=" + documentsName
+				+ ", documentsHolderName=" + documentsHolderName
+				+ ", documentNumber=" + documentNumber + ", employeeNumber="
+				+ employeeNumber + ", issueDate=" + issueDate + ", expiryDate="
+				+ expiryDate + ", phoneNumber=" + phoneNumber + ", email="
+				+ email + "]";
+	}
+	
 	
 	
 	

@@ -23,8 +23,13 @@ public class DRTMain {
 		Company company = new Company();
 		company.setCompanyNumber("CMP1");
 		company.setName("COMPANY");
-		//String result = drtService.createCompany(company);
-		//System.out.println(result);
+		try {
+			String result = drtService.createCompany(company);
+			System.out.println(result);
+		} catch (DRTException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		Record record = new Record();
 		record.setDocumentsHolderName("Bharat");
 		record.setDocumentsName("Passport");
@@ -79,7 +84,7 @@ public class DRTMain {
 			e.printStackTrace();
 		}
 		try {
-			System.out.println(drtService.getAllRecords().get(2).getEmployeeNumber());
+			System.out.println(drtService.getAllRecords().get(0).getEmployeeNumber());
 		} catch (DRTException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
