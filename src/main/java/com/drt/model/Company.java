@@ -31,4 +31,10 @@ public class Company {
 	public void setCompanyNumber(String companyNumber) {
 		this.companyNumber = companyNumber;
 	}
+	@Override
+	public String toString() {
+		return "Company [name=" + name + ", email=" + email
+				+ ", emailPassword=" + emailPassword + ", companyNumber="
+				+ companyNumber + "]";
+	}
 }

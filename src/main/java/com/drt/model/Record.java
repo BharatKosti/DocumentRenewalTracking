@@ -68,6 +68,15 @@ public class Record {
 	public void setCompanyNumber(String companyNumber) {
 		this.companyNumber = companyNumber;
 	}
+	@Override
+	public String toString() {
+		return "Record [documentsName=" + documentsName
+				+ ", documentsHolderName=" + documentsHolderName
+				+ ", documentNumber=" + documentNumber + ", employeeNumber="
+				+ employeeNumber + ", issueDate=" + issueDate + ", expiryDate="
+				+ expiryDate + ", phoneNumber=" + phoneNumber + ", email="
+				+ email + ", companyNumber=" + companyNumber + "]";
+	}
 	
 	
 	

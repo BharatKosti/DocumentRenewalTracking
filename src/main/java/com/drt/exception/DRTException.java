@@ -12,6 +12,11 @@ public class DRTException extends Exception {
 	/**
 	 * 
 	 */
+	private static final long serialVersionUID = 3997971663128468167L;
+
+	/**
+	 * 
+	 */
 	public DRTException() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -40,7 +40,8 @@ public class DRTDaoImpl implements DRTDao {
 		SQLQuery query = session.createSQLQuery(sql);
 		query.addEntity(RecordEntity.class);
 		query.setParameter("employeeNumber", employeeNumber);
-		List results = query.list();
+		@SuppressWarnings("unchecked")
+		List<RecordEntity> results = query.list();
 		return (RecordEntity) results.get(0);
 	}
 
@@ -50,13 +51,15 @@ public class DRTDaoImpl implements DRTDao {
 		SQLQuery query = session.createSQLQuery(sql);
 		query.addEntity(RecordEntity.class);
 		query.setParameter("documentNumber", documentNumber);
-		List results = query.list();
+		@SuppressWarnings("unchecked")
+		List<RecordEntity> results = query.list();
 		return (RecordEntity) results.get(0);
 	}
 
 	public List<RecordEntity> getAllRecords() throws DRTException{
 		Session session = sessionFactory.openSession();
 		Query query = session.createQuery("from RecordEntity");
+		@SuppressWarnings("unchecked")
 		List<RecordEntity> recordEntities = query.list();
 		return recordEntities;
 	}
@@ -98,13 +101,15 @@ public class DRTDaoImpl implements DRTDao {
 		SQLQuery query = session.createSQLQuery(sql);
 		query.addEntity(CompanyEntity.class);
 		query.setParameter("emploeeNumber", employeeNumber);
-		List results = query.list();
+		@SuppressWarnings("unchecked")
+		List<AdminEntity> results = query.list();
 		return (AdminEntity) results.get(0);
 	}
 
 	public List<AdminEntity> getAllAdmins() throws DRTException{
 		Session session = sessionFactory.openSession();
 		Query query = session.createQuery("from AdminEntity");
+		@SuppressWarnings("unchecked")
 		List<AdminEntity> adminEntities = query.list();
 		return adminEntities;
 	}
@@ -130,7 +135,7 @@ public class DRTDaoImpl implements DRTDao {
 		session.beginTransaction();
 		session.getTransaction().commit();
 		session.close();
-		return null;
+		return recordEntities;
 	}
 
 	public String createCompany(CompanyEntity companyEntity) throws DRTException{
@@ -150,6 +155,7 @@ public class DRTDaoImpl implements DRTDao {
 	public List<CompanyEntity> getAllCompany() throws DRTException{
 		Session session = sessionFactory.openSession();
 		Query query = session.createQuery("from CompanyEntity");
+		@SuppressWarnings("unchecked")
 		List<CompanyEntity> companyEntities = query.list();
 		return companyEntities;
 	}
@@ -169,7 +175,8 @@ public class DRTDaoImpl implements DRTDao {
 		SQLQuery query = session.createSQLQuery(sql);
 		query.addEntity(CompanyEntity.class);
 		query.setParameter("companyNumber", companyNumber);
-		List results = query.list();
+		@SuppressWarnings("unchecked")
+		List<CompanyEntity> results = query.list();
 		return (CompanyEntity) results.get(0);
 	}
 	

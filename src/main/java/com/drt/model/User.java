@@ -7,6 +7,7 @@ public class User {
 	private String designamtion;
 	private String employeeEmail;
 	private String employeePhoneNumber;
+	private Permissions permissions;
 	public String getEmployeeNumber() {
 		return employeeNumber;
 	}
@@ -37,14 +38,20 @@ public class User {
 	public void setEmployeePhoneNumber(String employeePhoneNumber) {
 		this.employeePhoneNumber = employeePhoneNumber;
 	}
+	
+	public Permissions getPermissions() {
+		return permissions;
+	}
+	public void setPermissions(Permissions permissions) {
+		this.permissions = permissions;
+	}
 	@Override
 	public String toString() {
 		return "User [employeeNumber=" + employeeNumber + ", employeeName="
 				+ employeeName + ", designamtion=" + designamtion
 				+ ", employeeEmail=" + employeeEmail + ", employeePhoneNumber="
-				+ employeePhoneNumber + "]";
+				+ employeePhoneNumber + ", permissions=" + permissions + "]";
 	}
 	
 	
-
 }

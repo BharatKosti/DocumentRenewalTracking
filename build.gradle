@@ -23,6 +23,7 @@ dependencies {
     compile 'org.springframework:spring-jdbc:4.0.0.RELEASE'
     compile 'org.springframework:spring-tx:4.0.0.RELEASE'
     compile 'org.springframework:spring-orm:4.0.0.RELEASE'
+    compile 'org.springframework:spring-test:4.0.0.RELEASE'
     compile 'org.hibernate:hibernate-core:4.2.7.Final'
     compile 'mysql:mysql-connector-java:5.1.27'
     compile 'commons-dbcp:commons-dbcp:1.4'
