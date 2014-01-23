@@ -16,6 +16,7 @@ import com.drt.Dao.DRTDao;
 import com.drt.entity.AdminEntity;
 import com.drt.entity.CompanyEntity;
 import com.drt.entity.RecordEntity;
+import com.drt.entity.UserEntity;
 import com.drt.exception.DRTException;
 
 @Repository
@@ -178,6 +179,59 @@ public class DRTDaoImpl implements DRTDao {
 		@SuppressWarnings("unchecked")
 		List<CompanyEntity> results = query.list();
 		return (CompanyEntity) results.get(0);
+	}
+
+	public boolean isThereACompany() throws DRTException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.drt.Dao.DRTDao#createUser(com.drt.entity.UserEntity)
+	 */
+	public String createUser(UserEntity user) throws DRTException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.drt.Dao.DRTDao#getAllUsers()
+	 */
+	public List<UserEntity> getAllUsers() throws DRTException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.drt.Dao.DRTDao#getUserBYId(java.lang.String)
+	 */
+	public UserEntity getUserBYId(String employeeId) throws DRTException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.drt.Dao.DRTDao#updateUser(com.drt.entity.UserEntity)
+	 */
+	public String updateUser(UserEntity userEntity) throws DRTException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.drt.Dao.DRTDao#deleteUser(com.drt.entity.UserEntity)
+	 */
+	public String deleteUser(UserEntity userEntity) throws DRTException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.drt.Dao.DRTDao#deleteUserById(java.lang.String)
+	 */
+	public String deleteUserById(String employeeId) throws DRTException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

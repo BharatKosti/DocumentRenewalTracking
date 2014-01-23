@@ -41,6 +41,7 @@ public class DRTServiceTest {
 		//fail("Not yet implemented");
 	}
 	
+	@Ignore
 	@Test
 	public void getAllRecordsTest()
 	{
@@ -51,6 +52,25 @@ public class DRTServiceTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	@Ignore
+	@Test
+	public void createRecord()
+	{
+		Record record = new Record();
+		record.setCompanyNumber("CMP1");
+		record.setDocumentNumber("DOC1");
+		record.setDocumentsHolderName("BHARAT");
+		record.setDocumentsName("DOCNAME1");
+		record.setEmployeeNumber("EMP3");
+		String result=null;
+		try {
+			result = drtServiceImpl.createRecord(record);
+		} catch (DRTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertEquals("Created", result);;
 	}
 	
 

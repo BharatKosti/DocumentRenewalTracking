@@ -9,7 +9,9 @@ import java.util.List;
 import com.drt.entity.AdminEntity;
 import com.drt.entity.CompanyEntity;
 import com.drt.entity.RecordEntity;
+import com.drt.entity.UserEntity;
 import com.drt.exception.DRTException;
+import com.drt.model.User;
 
 /**
  * @author bharatkosti
@@ -35,5 +37,12 @@ public interface DRTDao {
 	public List<CompanyEntity> getAllCompany() throws DRTException;
 	public String updateCompany(CompanyEntity companyEntity) throws DRTException;
 	public String deleteCompanyById(int id) throws DRTException;
+	public boolean isThereACompany() throws DRTException;
+	public String createUser(UserEntity user) throws DRTException;
+	public List<UserEntity> getAllUsers() throws DRTException;
+	public UserEntity getUserBYId(String employeeId) throws DRTException;
+	public String updateUser(UserEntity userEntity) throws DRTException;
+	public String deleteUser(UserEntity userEntity) throws DRTException;
+	public String deleteUserById(String employeeId) throws DRTException;
 
 }

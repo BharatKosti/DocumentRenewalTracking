@@ -17,6 +17,7 @@ import com.drt.exception.DRTException;
 import com.drt.model.Admin;
 import com.drt.model.Company;
 import com.drt.model.Record;
+import com.drt.model.User;
 import com.drt.service.DRTService;
 
 @Service
@@ -32,13 +33,19 @@ public class DRTServiceImpl implements DRTService {
 		BeanUtils.copyProperties(record, recordEntity,ignoreProperties);
 		CompanyEntity companyEntity = drtDao.getCompanyByNumber(record.getCompanyNumber());
 		System.out.println(companyEntity);
+		if(record.getPhoneNumber()!=null)
 		recordEntity.setPhoneNumber(record.getPhoneNumber().get(0));
+		if(record.getEmail()!=null)
 		recordEntity.setEmail(record.getEmail().get(0));
-		java.sql.Date expiryDate = new java.sql.Date(record.getExpiryDate().getTimeInMillis());
-		System.out.println(expiryDate);
-		recordEntity.setExpiryDate(expiryDate);
-		java.sql.Date issueDate = new java.sql.Date(record.getIssueDate().getTimeInMillis());
-		recordEntity.setIssueDate(issueDate);
+		if(record.getExpiryDate()!=null)
+		{
+			java.sql.Date expiryDate = new java.sql.Date(record.getExpiryDate().getTimeInMillis());
+			System.out.println(expiryDate);
+			recordEntity.setExpiryDate(expiryDate);
+			java.sql.Date issueDate = new java.sql.Date(record.getIssueDate().getTimeInMillis());
+			recordEntity.setIssueDate(issueDate);
+		}
+		
 		recordEntity.setCompany(companyEntity);
 		String result = drtDao.createRecord(recordEntity);
 		return result;
@@ -184,4 +191,58 @@ public class DRTServiceImpl implements DRTService {
 		return result;
 	}
 
+	public boolean isThereACompany() throws DRTException {
+			boolean result = drtDao.isThereACompany();
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.drt.service.DRTService#createUser(com.drt.model.User)
+	 */
+	public String createUser(User user) throws DRTException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.drt.service.DRTService#getAllUsers()
+	 */
+	public List<User> getAllUsers() throws DRTException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.drt.service.DRTService#getUserBYId(java.lang.String)
+	 */
+	public User getUserBYId(String employeeId) throws DRTException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.drt.service.DRTService#updateUser(com.drt.model.User)
+	 */
+	public String updateUser(User user) throws DRTException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.drt.service.DRTService#deleteUser(com.drt.model.User)
+	 */
+	public String deleteUser(User user) throws DRTException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.drt.service.DRTService#deleteUserById(java.lang.String)
+	 */
+	public String deleteUserById(String employeeId) throws DRTException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 }

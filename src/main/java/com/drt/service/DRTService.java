@@ -7,6 +7,7 @@ import com.drt.exception.DRTException;
 import com.drt.model.Admin;
 import com.drt.model.Company;
 import com.drt.model.Record;
+import com.drt.model.User;
 
 public interface DRTService {
 	
@@ -27,5 +28,11 @@ public interface DRTService {
 	public List<Company> getAllCompany() throws DRTException;
 	public String updateCompany(Company company) throws DRTException;
 	public String deleteCompanyById(int id) throws DRTException;
-
+	public boolean isThereACompany() throws DRTException;
+	public String createUser(User user) throws DRTException;
+	public List<User> getAllUsers() throws DRTException;
+	public User getUserBYId(String employeeId) throws DRTException;
+	public String updateUser(User user) throws DRTException;
+	public String deleteUser(User user) throws DRTException;
+	public String deleteUserById(String employeeId) throws DRTException;
 }
